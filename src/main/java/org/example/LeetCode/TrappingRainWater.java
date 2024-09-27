@@ -1,5 +1,6 @@
 package org.example.LeetCode;
 
+//https://leetcode.com/problems/trapping-rain-water/
 public class TrappingRainWater {
 
     //we will go building by building and see how much water can be stored on top of it

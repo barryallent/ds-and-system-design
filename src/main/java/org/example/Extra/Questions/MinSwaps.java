@@ -2,6 +2,8 @@ package org.example.Extra.Questions;
 
 import java.util.Arrays;
 
+//https://www.geeksforgeeks.org/problems/minimum-swaps/1
+//solution explanation: https://www.youtube.com/watch?v=m-8_yQao-lI
 public class MinSwaps {
     public int minSwaps(int nums[]) {
         int n=nums.length;
