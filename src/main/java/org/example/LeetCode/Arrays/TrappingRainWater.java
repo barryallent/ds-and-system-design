@@ -1,4 +1,4 @@
-package org.example.LeetCode;
+package org.example.LeetCode.Arrays;
 
 //https://leetcode.com/problems/trapping-rain-water/
 public class TrappingRainWater {

@@ -1,4 +1,4 @@
-package org.example.LeetCode;
+package org.example.LeetCode.Greedy;
 
 import java.util.ArrayList;
 import java.util.Collections;
