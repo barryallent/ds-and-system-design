@@ -1,5 +1,6 @@
 package org.example.LeetCode.Arrays;
 
+//https://leetcode.com/problems/valid-sudoku/description/
 public class ValidSudoku {
 
         //function to find which box this i and j falls into
