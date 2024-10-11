@@ -37,10 +37,6 @@ public class NumberOfWaysToArriveAtDestination {
             int element = (int) topElement[0];
             long distance = topElement[1];
 
-            if(distance>distances[element]) {
-                continue;
-            }
-
             for(long[] neighbour:roadsGraph.get(element)) {
                 long newDistance = neighbour[1]+distance;
                 int neighbourValue = (int) neighbour[0];
