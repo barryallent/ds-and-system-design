@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
 public class KruskalsAlgorithm {
     static int spanningTree(int V, int E, List<List<int[]>> adj) {
         // Code Here.
