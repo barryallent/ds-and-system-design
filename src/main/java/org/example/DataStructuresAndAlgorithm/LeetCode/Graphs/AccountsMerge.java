@@ -2,6 +2,7 @@ package org.example.DataStructuresAndAlgorithm.LeetCode.Graphs;
 
 import java.util.*;
 
+//https://leetcode.com/problems/accounts-merge/
 public class AccountsMerge {
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
         int n = accounts.size();
