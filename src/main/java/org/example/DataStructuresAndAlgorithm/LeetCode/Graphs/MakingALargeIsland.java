@@ -85,7 +85,7 @@ public class MakingALargeIsland {
         //we go at each cell and find its ultimate parent size
 
         for(int i=0;i<m*n;i++) {
-            maxComponentSize=Math.max(maxComponentSize, ds.size[i]);
+            maxComponentSize=Math.max(maxComponentSize, ds.size[ds.findUltimateParent(i)]);
         }
 
         return maxComponentSize;
