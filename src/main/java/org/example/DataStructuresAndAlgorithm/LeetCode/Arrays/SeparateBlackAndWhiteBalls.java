@@ -18,14 +18,12 @@ public class SeparateBlackAndWhiteBalls {
             }
         }
 
-        //sort the indices
-        Collections.sort(onesIndex, (a, b)->b-a);
-
         long operationsNeeded=0L;
         int lastOneIndex=n-1;
 
         //at each ones index we have to place, it to the end, so operations needed will be
         //lastOneIndex-currentOneIndex;
+        //sorting is not needed as we are only adding lastOneIndex-currentOneIndex to answer each time
         for(int currentOneIndex:onesIndex) {
             operationsNeeded+=lastOneIndex-currentOneIndex;
             lastOneIndex--;
