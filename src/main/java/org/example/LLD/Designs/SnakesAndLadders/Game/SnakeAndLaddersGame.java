@@ -42,8 +42,6 @@ public class SnakeAndLaddersGame {
                 return;
             }
             Cell cell = playingBoard.getCell(score);
-            int row=score/ playingBoard.getBoardSize();
-            int column=score% playingBoard.getBoardSize();
             if(cell.getJump().getStart()==score) {
                 if(cell.getJump().getStart()>cell.getJump().getEnd()) {
                     System.out.println("bitten by snake, moving from "+cell.getJump().getStart() +" to "+cell.getJump().getEnd());

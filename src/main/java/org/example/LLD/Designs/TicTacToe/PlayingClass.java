@@ -3,6 +3,7 @@ package org.example.LLD.Designs.TicTacToe;
 import org.example.LLD.Designs.TicTacToe.Board.PlayingBoard;
 import org.example.LLD.Designs.TicTacToe.Players.Player;
 import org.example.LLD.Designs.TicTacToe.Players.PlayingPiece;
+import org.example.LLD.Designs.TicTacToe.Players.Winner;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,47 +19,56 @@ public class PlayingClass {
     }
 
     void play() {
+        Scanner sc = new Scanner(System.in);
 
-        while(playingBoard.checkWinner().isWinner && playingBoard.isFreeSpaces()) {
-
+        while (true) {
+            // Print the board at the start of each round
             playingBoard.printBoard();
-            Player p1 = players.get(0);
-            players.remove(0);
 
-            Boolean isPlaced=false;
+            // Check for winner or tie at the start of each loop iteration
+            Winner winnerResult = playingBoard.checkWinner();
+            if (winnerResult.isWinner) {
+                System.out.println("Winner is " + winnerResult.winner);
+                break;
+            }
+
+            if (!playingBoard.isFreeSpaces()) {
+                System.out.println("Game over - It's a tie!");
+                break;
+            }
+
+            // Get the current player
+            Player currentPlayer = players.get(0);
+            System.out.println("Turn: " + currentPlayer.playerName + " playing piece = " + currentPlayer.playingPiece);
+
+            // Try to place the piece until a valid position is chosen
+            boolean isPlaced = false;
             while (!isPlaced) {
-                System.out.println("chance of "+p1.playerName+ " playing piece="+ p1.playingPiece);
-                System.out.println("please choose row and column to place piece, space seperated");
-                Scanner sc = new Scanner(System.in);
+                System.out.println("Choose row and column to place piece, separated by a space:");
                 String rowColumn = sc.nextLine();
-                String[] input = rowColumn.split(" ");
-                int row = Integer.parseInt(input[0]);
-                int column = Integer.parseInt(input[1]);
-                isPlaced = playingBoard.placePiece(row, column, p1.playingPiece);
-                if(!isPlaced)  playingBoard.printBoard();
-            }
-            if(playingBoard.checkWinner().isWinner) {
-                if(playingBoard.checkWinner().winner== PlayingPiece.X) {
-                    for(Player p:players) {
-                        if(p.playingPiece== PlayingPiece.X) {
-                            System.out.println("winner is "+p.playerName);
-                            return;
-                        }
-                    }
+                String[] input = rowColumn.trim().split(" ");
+                if (input.length != 2) {
+                    System.out.println("Invalid input. Please enter two numbers separated by space.");
+                    continue;
                 }
-                if(playingBoard.checkWinner().winner== PlayingPiece.O) {
-                    for(Player p:players) {
-                        if(p.playingPiece== PlayingPiece.O) {
-                            System.out.println("winner is "+p.playerName);
-                            return;
-                        }
-                    }
-                }
-            }
-            players.add(p1);
-        }
-        System.out.println("Game over");
 
+                try {
+                    int row = Integer.parseInt(input[0]);
+                    int column = Integer.parseInt(input[1]);
+                    isPlaced = playingBoard.placePiece(row, column, currentPlayer.playingPiece);
+                    if (!isPlaced) {
+                        System.out.println("Position already occupied, try another.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter numeric values.");
+                }
+            }
+
+            // Rotate players
+            players.add(players.remove(0));
+        }
+
+        sc.close();
     }
 
 

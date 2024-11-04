@@ -30,42 +30,72 @@ public class PlayingBoard {
     }
 
     public Winner checkWinner() {
-        //match horizontally
-        for(int i=0;i<size;i++) {
-            Boolean winnerFound=true;
-            PlayingPiece winnerPiece=null;
-            for(int j=0;j<size-1;j++) {
-                if(board[i][j]==board[i][j+1]) {
-                    winnerPiece=board[i][j];
-                }
-                else {
-                    winnerFound=false;
-                }
-            }
-            if(winnerFound) {
-                return new Winner(true,winnerPiece);
-            }
-        }
-
-        //match vertically
-        for(int j=0;j<size;j++) {
-            Boolean winnerFound=true;
-            PlayingPiece winnerPiece=null;
-            for(int i=0;i<size-1;i++) {
-                if(board[i][j]==board[i+1][j]) {
-                    winnerPiece=board[i][j];
-                }
-                else {
-                    winnerFound=false;
+        // Horizontal check
+        for (int i = 0; i < size; i++) {
+            boolean winnerFound = true;
+            PlayingPiece winnerPiece = board[i][0];
+            if (winnerPiece == null) continue;
+            for (int j = 1; j < size; j++) {
+                if (board[i][j] != winnerPiece) {
+                    winnerFound = false;
+                    break;
                 }
             }
-            if(winnerFound) {
-                System.out.println("winner is found, winner is"+ winnerPiece);
-                return new Winner(true,winnerPiece);
+            if (winnerFound) {
+                return new Winner(true, winnerPiece);
             }
         }
 
-        return new Winner(false,null);
+        // Vertical check
+        for (int j = 0; j < size; j++) {
+            boolean winnerFound = true;
+            PlayingPiece winnerPiece = board[0][j];
+            if (winnerPiece == null) continue;
+            for (int i = 1; i < size; i++) {
+                if (board[i][j] != winnerPiece) {
+                    winnerFound = false;
+                    break;
+                }
+            }
+            if (winnerFound) {
+                return new Winner(true, winnerPiece);
+            }
+        }
+
+        // Diagonal check (top-left to bottom-right)
+        boolean winnerFound = true;
+        PlayingPiece winnerPiece = board[0][0];
+        // Check if diagonal starts with a non-empty piece
+        if (winnerPiece != null) {
+            for (int i = 1; i < size; i++) {
+                if (board[i][i] != winnerPiece) {
+                    winnerFound = false;
+                    break;
+                }
+            }
+            if (winnerFound) {
+                return new Winner(true, winnerPiece);
+            }
+        }
+
+        // Diagonal check (top-right to bottom-left)
+        winnerFound = true;
+        winnerPiece = board[0][size - 1];
+        // Check if diagonal starts with a non-empty piece
+        if (winnerPiece != null) {
+            for (int i = 1; i < size; i++) {
+                if (board[i][size - 1 - i] != winnerPiece) {
+                    winnerFound = false;
+                    break;
+                }
+            }
+            if (winnerFound) {
+                return new Winner(true, winnerPiece);
+            }
+        }
+
+        // No winner found
+        return new Winner(false, null);
     }
 
     public Boolean placePiece(int row, int column, PlayingPiece playingPiece) {
