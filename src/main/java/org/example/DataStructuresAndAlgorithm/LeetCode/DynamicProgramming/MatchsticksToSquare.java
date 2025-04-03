@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+//https://leetcode.com/problems/matchsticks-to-square/description/
 public class MatchsticksToSquare {
     class Solution {
         Map<String, Boolean> isSquareMemo;

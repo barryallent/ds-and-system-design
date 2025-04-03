@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//https://leetcode.com/problems/minimum-operations-to-make-a-uni-value-grid/description/
 public class MinimumOperationsToMakeUniValueGrid {
     // First we will see if it is possible even to make all elements equal by checking the remainder.
     // Then we will find out the final element of uniGrid and count the operations to make all elements equal to it
