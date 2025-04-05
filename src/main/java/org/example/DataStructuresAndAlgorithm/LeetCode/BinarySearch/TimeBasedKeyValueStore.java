@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//https://leetcode.com/problems/time-based-key-value-store/
 
+//used pair instead of String to avoid the split and converting back to int complexity inside binary search
 class Pair {
     int timestamp;
     String value;
