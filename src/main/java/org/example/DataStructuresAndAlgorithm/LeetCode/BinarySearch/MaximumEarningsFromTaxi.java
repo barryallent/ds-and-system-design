@@ -3,6 +3,8 @@ package org.example.DataStructuresAndAlgorithm.LeetCode.BinarySearch;
 import java.util.Arrays;
 
 //https://leetcode.com/problems/maximum-earnings-from-taxi/description/
+
+//Time- O(nlogn), O(n) time is also possible
 public class MaximumEarningsFromTaxi {
     long[] maxEarnings;
 
