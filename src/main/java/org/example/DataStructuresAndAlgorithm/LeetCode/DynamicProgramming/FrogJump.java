@@ -74,11 +74,20 @@ public class FrogJump {
 class Solution {
     public static void main(String[] args) {
         FrogJump frogJump = new FrogJump();
-        int[] stones = {0,1,3,6,10,13,15,18};
+        int[] stones = new int[2000];
+        for (int i = 0; i < 2000; i++) {
+            stones[i] = i * 1; // Uniformly spaced, 1 unit apart
+        }
 
+        // Measure execution time
+        long startTime = System.nanoTime();
+        
         boolean result = frogJump.canCross(stones);
-        System.out.println(result);
-
+        
+        long endTime = System.nanoTime();
+        double durationMillis = (endTime - startTime) / 1_000_000.0;
+        
+        System.out.println("Result: " + result);
+        System.out.println("Execution time: " + durationMillis + " ms");
     }
-
 }
