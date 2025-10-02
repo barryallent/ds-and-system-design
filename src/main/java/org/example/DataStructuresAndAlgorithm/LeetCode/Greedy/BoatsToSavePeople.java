@@ -9,7 +9,7 @@ public class BoatsToSavePeople {
         //Best option is that we sit the heaviest person with lightest, because we anyways have to sit
         //2 people. So if we are able to sit the lightest with heaviest then we move both pointers
         //otherwise if sum of both weights is greater than limit that means we cannot have one more
-        //person so only move right pointer
+        //person so move only the right pointer
         Arrays.sort(people);
 
         int n = people.length;
