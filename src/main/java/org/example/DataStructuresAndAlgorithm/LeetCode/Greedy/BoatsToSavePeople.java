@@ -2,6 +2,7 @@ package org.example.DataStructuresAndAlgorithm.LeetCode.Greedy;
 
 import java.util.Arrays;
 
+//https://leetcode.com/problems/boats-to-save-people/description/
 public class BoatsToSavePeople {
     public int numRescueBoats(int[] people, int limit) {
 
