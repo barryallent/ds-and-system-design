@@ -3,18 +3,6 @@ package org.example.DataStructuresAndAlgorithm.LeetCode.Trees;
 import java.util.*;
 
 //https://leetcode.com/problems/path-sum-iii/description/
-class TreeNode {
-    int val;
-    TreeNode left;
-      TreeNode right;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
-}
 
 public class PathSumIII {
     int countPaths(TreeNode root, int targetSum, long currentSum, Map<Long,Integer> prefixSum) {
