@@ -9,7 +9,7 @@ public class MinimumFallingPathSumII {
 
         int minFallingPathSum(int i, int j, int[][] grid) {
             if (i >= m || i < 0 || j >= n || j < 0) {
-                return 10000000;
+                return Integer.MAX_VALUE;
             }
 
             if (i == m - 1) {
@@ -20,7 +20,7 @@ public class MinimumFallingPathSumII {
                 return minSumMemo[i][j];
             }
 
-            int op1=10000000;
+            int op1=Integer.MAX_VALUE;
 
             for(int k=0;k<n;k++){
                 if(k!=j) {
