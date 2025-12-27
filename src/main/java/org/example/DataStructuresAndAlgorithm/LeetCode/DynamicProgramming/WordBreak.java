@@ -64,4 +64,39 @@ public class WordBreak {
         return checkWordBreak(0, 0, s, words);
 
     }
+
+    //bottomup solution
+//    public boolean wordBreak(String s, List<String> wordDict) {
+//
+//        //put all words in set to search in constant time
+//        Set<String> words = new HashSet<>(wordDict);
+//
+//        int n = s.length();
+//
+//        //dp[k] represent if we till length k we can form words from dict
+//        boolean[] dp = new boolean[n+1];
+//
+//        //length 0 string can be formed for dict words
+//        //we are kind of shifting one index, we will start from 1st index
+//        dp[0]=true;
+//
+//
+//        //at all index we will try to check
+//        for(int i=1;i<n+1;i++) {
+//
+//            //eg s='leeleetcode' and words=['lee','leet', 'code']
+//            //so at i=7 i.e at index 6 i.e at t we will check for j=0 to 6
+//            //so when j is 3 i.e substring is leet and dp[3] is true because lee also exist
+//            //so that means till leeleet we can form it using words
+//            for(int j=0;j<i;j++) {
+//                if(dp[j] && words.contains(s.substring(j,i))) {
+//                    dp[i]=true;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return dp[n];
+//
+//    }
 }
