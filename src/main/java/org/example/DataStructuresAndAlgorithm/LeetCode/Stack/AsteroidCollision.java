@@ -4,58 +4,54 @@ import java.util.*;
 
 //https://leetcode.com/problems/asteroid-collision/description/
 public class AsteroidCollision {
-    public int[] asteroidCollision(int[] asteroids) {
+        public int[] asteroidCollision(int[] asteroids) {
 
-        int n = asteroids.length;
-        Stack<Integer> s1 = new Stack<>();
+            Stack<Integer> s1 = new Stack<>();
 
-        for(int i=0;i<n;i++) {
-            boolean isEqualMass=false;
+            for(int i=0;i<asteroids.length;i++) {
+                int currentAesteroid=asteroids[i];
+                boolean isCurrentDestroyed=false;
 
-            //if empty or both are travelling sign then push
-            if(s1.isEmpty() || asteroids[i]*asteroids[s1.peek()]>0) {
-                s1.push(i);
-            }
+                //this is the collision condition when peak is greater than 0 i.e. moving right
+                //and current element less than 0 i.e. moving left
+                while(!s1.isEmpty() && s1.peek()>0 && currentAesteroid<0) {
 
-            //if stack top is going left and incoming elements wants to go right then push
-            else if (asteroids[i]>0 && asteroids[s1.peek()]<0) {
-                s1.push(i);
-            }
-
-            //collision case
-            else {
-
-                //while travelling in opposite directions and incoming mass is more or equal
-                while(!s1.isEmpty() && asteroids[i]<0 && asteroids[s1.peek()]>0 && asteroids[s1.peek()]<=Math.abs(asteroids[i])) {
-
-                    //if masses are equal then we destroy and break otherwise keep destroying
-                    //till we found less mass
-                    if(asteroids[s1.peek()]==Math.abs(asteroids[i])) {
-                        isEqualMass=true;
+                    //if negative mass is more then destroy positive one
+                    if(s1.peek()<-1*(currentAesteroid)) {
+                        s1.pop();
                     }
-                    s1.pop();
-                    if(isEqualMass) break;
+
+                    //if both equal then destry both, if current destroyed just break while loop
+                    //so that it cant destroy anyone else
+                    else if(s1.peek()==-1*(currentAesteroid)) {
+                        s1.pop();
+                        isCurrentDestroyed=true;
+                        break;
+                    }
+
+                    //if negative mass is less then destroy that
+                    else {
+                        isCurrentDestroyed=true;
+                        break;
+                    }
                 }
 
-                //push to stack if either stack got empty or stack top has element moving to left
-                //and masses were not equal means element was not destroyed
-                if((s1.isEmpty() || asteroids[s1.peek()]<0) && !isEqualMass) {
-                    s1.push(i);
+                //if current was not destroyed then add it
+                if(!isCurrentDestroyed) {
+                    s1.add(currentAesteroid);
                 }
             }
 
+            //convert stack to reverse array
+            int n = s1.size();
+            int[] remainingAesteroids = new int[n];
+            int i=0;
 
+            while(!s1.isEmpty()) {
+                remainingAesteroids[n-i-1]=s1.pop();
+                i++;
+            }
+
+            return remainingAesteroids;
         }
-
-        //make array from stack
-        int size = s1.size();
-        int[] finalAsteroids = new int[size];
-
-        int index=0;
-        while(!s1.isEmpty()) {
-            finalAsteroids[size-index-1]=asteroids[s1.pop()];
-            index++;
-        }
-        return finalAsteroids;
-    }
 }
