@@ -3,39 +3,33 @@ package org.example.DataStructuresAndAlgorithm.LeetCode.LinkedList;
 //https://leetcode.com/problems/rotate-list/
 public class RotateList {
     public ListNode rotateRight(ListNode head, int k) {
-
-        if(head==null || head.next==null || k==0) {
+        if(head==null || head.next==null) {
             return head;
         }
+        ListNode current = head;
+        ListNode endNode = null;
+        int lengthOfList = 0;
 
-        //if k is greater than size of list then k=k%sizeOfList
-        ListNode current=head;
-        int sizeOfList = 0;
         while(current!=null) {
+            endNode = current;
             current=current.next;
-            sizeOfList++;
+            lengthOfList++;
         }
-        k=k%sizeOfList;
 
-        //current initialize to head again to handle k=0 case
-        current=head;
+        // Make it circular
+        endNode.next = head;
 
-        //function to rotate k times
-        for(int i=1;i<=k;i++) {
+        k=k%lengthOfList;
 
-            //go to prev and last node
-            ListNode prev=null;
-            current = head;
-            while(current.next!=null) {
-                prev=current;
-                current=current.next;
-            }
-
-            //move last node to front and update head to new node
-            prev.next = null;
-            current.next=head;
-            head=current;
+        //Find new tail: (len - k - 1)
+        ListNode newEnd = head;
+        for(int i=0;i<lengthOfList-k-1;i++) {
+            newEnd=newEnd.next;
         }
-        return current;
-    }
-}
+
+        //Break the circle
+        ListNode newHead = newEnd.next;
+        newEnd.next = null;
+
+        return newHead;
+    }}
