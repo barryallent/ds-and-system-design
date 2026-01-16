@@ -6,7 +6,7 @@ public class BinarySearchTreeIterator {
     Stack<TreeNode> s1 = new Stack<>();
     TreeNode current;
 
-    public BSTIterator(TreeNode root) {
+    public BinarySearchTreeIterator(TreeNode root) {
         current = root;
     }
 
