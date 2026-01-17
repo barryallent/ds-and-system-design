@@ -14,10 +14,10 @@ public class HouseRobberIII {
             return dp.get(root);
         }
 
-        int leftChildrensContribution = root.left != null ? rob(root.left.left, dp) + rob(root.left.right, dp) : 0;
-        int rightChildrensContribution = root.right != null ? rob(root.right.left, dp) + rob(root.right.right, dp) : 0;
+        int leftChildrenContribution = root.left != null ? rob(root.left.left, dp) + rob(root.left.right, dp) : 0;
+        int rightChildrenContribution = root.right != null ? rob(root.right.left, dp) + rob(root.right.right, dp) : 0;
 
-        int robCurrent = root.val + leftChildrensContribution + rightChildrensContribution;
+        int robCurrent = root.val + leftChildrenContribution + rightChildrenContribution;
 
         int notRobCurrent = rob(root.left, dp) + rob(root.right, dp);
 
